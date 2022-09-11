@@ -14,7 +14,8 @@ function divide(firstNumber, secondNumber) {
     return firstNumber / secondNumber;
 }
 
-console.log(add(4, 2));
-console.log(subtract(4, 2));
-console.log(multiply(4, 2));
-console.log(divide(4, 2));
+function operate(operator, firstNumber, secondNumber) {
+    return operator(firstNumber, secondNumber);
+}
+
+console.log(operate(add, 4, 2));
