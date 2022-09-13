@@ -15,11 +15,14 @@ function checkIfZero(number) {
 
 function displayValue(button) {
     let value = button.target.textContent;
+    let number = null;
 
     if (checkIfZero(Number(display.textContent))) {
         display.textContent = value;
+        number = value;
     } else {
         display.textContent += value;
+        number += value;
     }
 }
 
