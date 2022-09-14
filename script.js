@@ -29,13 +29,21 @@ function displayValue(button) {
 
     if (value === '=') {
         if (operator === '+') {
-            display.textContent = operate(add, firstNumber, Number(display.textContent));
+            firstNumber = operate(add, firstNumber, Number(display.textContent))
+            operator = null;
+            display.textContent = firstNumber;
         } else if (operator === '-') {
-            display.textContent = operate(subtract, firstNumber, Number(display.textContent));
+            firstNumber = operate(subtract, firstNumber, Number(display.textContent));
+            operator = null;
+            display.textContent = firstNumber;
         } else if (operator === 'x') {
-            display.textContent = operate(multiply, firstNumber, Number(display.textContent));
+            firstNumber = operate(multiply, firstNumber, Number(display.textContent));
+            operator = null;
+            display.textContent = firstNumber;
         } else if (operator === '÷') {
-            display.textContent = operate(divide, firstNumber, Number(display.textContent));
+            firstNumber = operate(divide, firstNumber, Number(display.textContent));
+            operator = null;
+            display.textContent = firstNumber;
         }
     } else {
         if (checkIfOperator(value) === false) {
@@ -51,8 +59,9 @@ function displayValue(button) {
 
             if (firstNumber === null) {
                 firstNumber = Number(display.textContent);
-                display.textContent = '0';
             }
+            
+            display.textContent = '0';
         }
     }
 }
