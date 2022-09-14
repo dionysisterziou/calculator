@@ -50,18 +50,38 @@ function displayValue(button) {
             if (checkIfZero(Number(display.textContent))) {
                 display.textContent = value;
             } else {
-                display.textContent += value;
+                if (operator === null) {
+                    display.textContent += value;
+                } else {
+                    display.textContent = value;
+                }
             }
         } else {
             if (operator === null) {
                 operator = value;
-            }
 
-            if (firstNumber === null) {
-                firstNumber = Number(display.textContent);
+                if (firstNumber === null) {
+                    firstNumber = Number(display.textContent);
+                }
+            } else {
+                if (operator === '+') {
+                    firstNumber = operate(add, firstNumber, Number(display.textContent))
+                    operator = value;
+                    display.textContent = firstNumber;
+                } else if (operator === '-') {
+                    firstNumber = operate(subtract, firstNumber, Number(display.textContent));
+                    operator = value;
+                    display.textContent = firstNumber;
+                } else if (operator === 'x') {
+                    firstNumber = operate(multiply, firstNumber, Number(display.textContent));
+                    operator = value;
+                    display.textContent = firstNumber;
+                } else if (operator === '÷') {
+                    firstNumber = operate(divide, firstNumber, Number(display.textContent));
+                    operator = value;
+                    display.textContent = firstNumber;
+                }
             }
-            
-            display.textContent = '0';
         }
     }
 }
