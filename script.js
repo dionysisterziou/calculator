@@ -1,28 +1,59 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector('#display');
 
-// Operators
+// Operators' functions
 let add = (firstNumber, secondNumber) => firstNumber + secondNumber;
 let subtract = (firstNumber, secondNumber) => firstNumber - secondNumber;
 let multiply = (firstNumber, secondNumber) => firstNumber * secondNumber;
 let divide = (firstNumber, secondNumber) => firstNumber / secondNumber;
 
-function checkIfZero(number) {
-    if (number === 0) {
+let firstNumber = null;
+let operator = null;
+
+function checkIfZero(value) {
+    if (value === 0) {
         return true;
+    }
+}
+
+function checkIfOperator(value) {
+    if (value === '+' || value === '-' || value === 'x' || value === '÷') {
+        return true;
+    } else {
+        return false;
     }
 }
 
 function displayValue(button) {
     let value = button.target.textContent;
-    let number = null;
 
-    if (checkIfZero(Number(display.textContent))) {
-        display.textContent = value;
-        number = value;
+    if (value === '=') {
+        if (operator === '+') {
+            display.textContent = operate(add, firstNumber, Number(display.textContent));
+        } else if (operator === '-') {
+            display.textContent = operate(subtract, firstNumber, Number(display.textContent));
+        } else if (operator === 'x') {
+            display.textContent = operate(multiply, firstNumber, Number(display.textContent));
+        } else if (operator === '÷') {
+            display.textContent = operate(divide, firstNumber, Number(display.textContent));
+        }
     } else {
-        display.textContent += value;
-        number += value;
+        if (checkIfOperator(value) === false) {
+            if (checkIfZero(Number(display.textContent))) {
+                display.textContent = value;
+            } else {
+                display.textContent += value;
+            }
+        } else {
+            if (operator === null) {
+                operator = value;
+            }
+
+            if (firstNumber === null) {
+                firstNumber = Number(display.textContent);
+                display.textContent = '0';
+            }
+        }
     }
 }
 
