@@ -48,6 +48,12 @@ function displayValue(button) {
         operator = null;
         previousValueWasNotNumber = true;
     }
+
+    // It keeps the length of the number at 9 digits
+    if (display.textContent.length > 9) {
+        display.textContent = display.textContent.substring(0, 9);
+    }
+
 }
 
 function operate(operator, firstNumber, secondNumber) {
