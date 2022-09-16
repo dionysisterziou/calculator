@@ -13,6 +13,10 @@ let operator = null;
 let defaultedDisplay = true; // The 0 in the calculator's display
 let previousValueWasNotNumber = false;
 
+buttons.forEach(button => {
+    button.addEventListener('click', displayValue);
+});
+
 function checkIfNumber(value) {
     if (Number(value) >= 0 || Number(value) <= 9) {
         return true;
@@ -32,17 +36,20 @@ function checkIfEqual(value) {
 }
 
 function transformOperatorToFunction(value) {
-    if (value === '+') {
-        value = add;
-    } else if (value === '-') {
-        value = subtract;
-    } else if (value === 'x') {
-        value = multiply;
-    } else if (value === '÷') {
-        value = divide;
+    switch (value) {
+        case '+':
+            value = add;
+            return value;
+        case '-':
+            value = subtract;
+            return value;
+        case 'x':
+            value = multiply;
+            return value;
+        case '÷':
+            value = divide;
+            return value;
     }
-
-    return value;
 }
 
 function displayValue(button) {
@@ -75,10 +82,6 @@ function displayValue(button) {
         previousValueWasNotNumber = true;
     }
 }
-
-buttons.forEach(button => {
-    button.addEventListener('click', displayValue);
-});
 
 function operate(operator, firstNumber, secondNumber) {
     return operator(firstNumber, secondNumber);
