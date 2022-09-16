@@ -69,8 +69,9 @@ function displayValue(button) {
             }
         }
     } else if (checkIfOperator(value)) {
-        if (operator !== null) {
+        if (operator !== null && !previousValueWasNotNumber) {
             display.textContent = operate(operator, firstNumber, secondNumber);
+            operator = transformOperatorToFunction(value);
         } else {
             operator = transformOperatorToFunction(value);
         }
