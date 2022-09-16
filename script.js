@@ -9,9 +9,11 @@ let divide = (firstNumber, secondNumber) => firstNumber / secondNumber;
 
 let firstNumber = null;
 let operator = null;
+let defaultedDisplay = true;
+let previousValueWasNotNumber = false;
 
-function checkIfZero(value) {
-    if (value === 0) {
+function checkIfNumber(value) {
+    if (Number(value) >= 0 || Number(value) <= 9) {
         return true;
     }
 }
@@ -19,70 +21,52 @@ function checkIfZero(value) {
 function checkIfOperator(value) {
     if (value === '+' || value === '-' || value === 'x' || value === '÷') {
         return true;
-    } else {
-        return false;
     }
+}
+
+function checkIfEqual(value) {
+    if (value === '=') {
+        return true;
+    }
+}
+
+function transformOperatorToFunction(value) {
+    if (value === '+') {
+        value = add;
+    } else if (value === '-') {
+        value = subtract;
+    } else if (value === 'x') {
+        value = multiply;
+    } else if (value === '÷') {
+        value = divide;
+    }
+
+    return value;
 }
 
 function displayValue(button) {
     let value = button.target.textContent;
 
-    if (value === '=') {
-        if (operator === '+') {
-            firstNumber = operate(add, firstNumber, Number(display.textContent))
-            operator = null;
-            display.textContent = firstNumber;
-        } else if (operator === '-') {
-            firstNumber = operate(subtract, firstNumber, Number(display.textContent));
-            operator = null;
-            display.textContent = firstNumber;
-        } else if (operator === 'x') {
-            firstNumber = operate(multiply, firstNumber, Number(display.textContent));
-            operator = null;
-            display.textContent = firstNumber;
-        } else if (operator === '÷') {
-            firstNumber = operate(divide, firstNumber, Number(display.textContent));
-            operator = null;
-            display.textContent = firstNumber;
-        }
-    } else {
-        if (checkIfOperator(value) === false) {
-            if (checkIfZero(Number(display.textContent))) {
-                display.textContent = value;
-            } else {
-                if (operator === null) {
-                    display.textContent += value;
-                } else {
-                    display.textContent = value;
-                }
-            }
+    if (checkIfNumber(value)) {
+        if (defaultedDisplay) {
+            display.textContent = value;
+            defaultedDisplay = false;
         } else {
-            if (operator === null) {
-                operator = value;
-
-                if (firstNumber === null) {
-                    firstNumber = Number(display.textContent);
-                }
+            if (previousValueWasNotNumber) {
+                display.textContent = value;
+                previousValueWasNotNumber = false;
             } else {
-                if (operator === '+') {
-                    firstNumber = operate(add, firstNumber, Number(display.textContent))
-                    operator = value;
-                    display.textContent = firstNumber;
-                } else if (operator === '-') {
-                    firstNumber = operate(subtract, firstNumber, Number(display.textContent));
-                    operator = value;
-                    display.textContent = firstNumber;
-                } else if (operator === 'x') {
-                    firstNumber = operate(multiply, firstNumber, Number(display.textContent));
-                    operator = value;
-                    display.textContent = firstNumber;
-                } else if (operator === '÷') {
-                    firstNumber = operate(divide, firstNumber, Number(display.textContent));
-                    operator = value;
-                    display.textContent = firstNumber;
-                }
+                display.textContent += value;
             }
         }
+    } else if (checkIfOperator(value)) {
+        firstNumber = Number(display.textContent);
+        operator = transformOperatorToFunction(value);
+        previousValueWasNotNumber = true;
+    } else if (checkIfEqual(value)) {
+        secondNumber = Number(display.textContent);
+        display.textContent = operate(operator, firstNumber, secondNumber);
+        previousValueWasNotNumber = true;
     }
 }
 
