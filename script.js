@@ -11,7 +11,7 @@ let firstNumber = null;
 let secondNumber = null;
 let operator = null;
 let defaultedDisplay = true; // The 0 in the default display
-let previousValueWasNotNumber = false;
+let previousValueWasNotNumber = null;
 
 buttons.forEach(button => {
     button.addEventListener('click', displayValue);
@@ -47,6 +47,13 @@ function displayValue(button) {
         display.textContent = operate(operator, firstNumber, secondNumber);
         operator = null;
         previousValueWasNotNumber = true;
+    } else if (checkIfAC(value)) {
+        display.textContent = 0;
+        operator = null;
+        previousValueWasNotNumber = null;
+        firstNumber = null;
+        secondNumber = null;
+        defaultedDisplay = true;
     }
 
     // It keeps the length of the displayed value at 9 digits
@@ -74,6 +81,12 @@ function checkIfOperator(value) {
 
 function checkIfEqual(value) {
     if (value === '=') {
+        return true;
+    }
+}
+
+function checkIfAC(value) {
+    if (value === 'AC') {
         return true;
     }
 }
