@@ -8,8 +8,9 @@ let multiply = (firstNumber, secondNumber) => firstNumber * secondNumber;
 let divide = (firstNumber, secondNumber) => firstNumber / secondNumber;
 
 let firstNumber = null;
+let secondNumber = null;
 let operator = null;
-let defaultedDisplay = true;
+let defaultedDisplay = true; // The 0 in the calculator's display
 let previousValueWasNotNumber = false;
 
 function checkIfNumber(value) {
@@ -46,6 +47,7 @@ function transformOperatorToFunction(value) {
 
 function displayValue(button) {
     let value = button.target.textContent;
+    secondNumber = Number(display.textContent);
 
     if (checkIfNumber(value)) {
         if (defaultedDisplay) {
@@ -60,11 +62,15 @@ function displayValue(button) {
             }
         }
     } else if (checkIfOperator(value)) {
+        if (operator !== null) {
+            display.textContent = operate(operator, firstNumber, secondNumber);
+        } else {
+            operator = transformOperatorToFunction(value);
+        }
+
         firstNumber = Number(display.textContent);
-        operator = transformOperatorToFunction(value);
         previousValueWasNotNumber = true;
     } else if (checkIfEqual(value)) {
-        secondNumber = Number(display.textContent);
         display.textContent = operate(operator, firstNumber, secondNumber);
         previousValueWasNotNumber = true;
     }
