@@ -35,7 +35,12 @@ function displayValue(button) {
         }
     } else if (checkIfOperator(value)) {
         if (operator !== null && !previousValueWasNotNumber) {
-            display.textContent = operate(operator, firstNumber, secondNumber);
+            if (checkIfDividedByZero(operator, secondNumber)) {
+                display.textContent = NaN;
+            } else {
+                display.textContent = operate(operator, firstNumber, secondNumber);
+            }
+
             operator = transformOperatorToFunction(value);
         } else {
             operator = transformOperatorToFunction(value);
@@ -44,7 +49,12 @@ function displayValue(button) {
         firstNumber = Number(display.textContent);
         previousValueWasNotNumber = true;
     } else if (checkIfEqual(value)) {
-        display.textContent = operate(operator, firstNumber, secondNumber);
+        if (checkIfDividedByZero(operator, secondNumber)) {
+            display.textContent = NaN;
+        } else {
+            display.textContent = operate(operator, firstNumber, secondNumber);
+        }
+
         operator = null;
         previousValueWasNotNumber = true;
     } else if (checkIfAC(value)) {
@@ -87,6 +97,12 @@ function checkIfEqual(value) {
 
 function checkIfAC(value) {
     if (value === 'AC') {
+        return true;
+    }
+}
+
+function checkIfDividedByZero(operator, secondNumber) {
+    if (operator === divide && secondNumber === 0) {
         return true;
     }
 }
