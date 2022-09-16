@@ -10,7 +10,7 @@ let divide = (firstNumber, secondNumber) => firstNumber / secondNumber;
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
-let defaultedDisplay = true; // The 0 in the calculator's display
+let defaultedDisplay = true; // The 0 in the default display
 let previousValueWasNotNumber = false;
 
 buttons.forEach(button => {
@@ -49,7 +49,7 @@ function displayValue(button) {
         previousValueWasNotNumber = true;
     }
 
-    // It keeps the length of the number at 9 digits
+    // It keeps the length of the displayed value at 9 digits
     if (display.textContent.length > 9) {
         display.textContent = display.textContent.substring(0, 9);
     }
