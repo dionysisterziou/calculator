@@ -87,7 +87,7 @@ function applyIfNumber(value) {
         display.textContent = value;
         defaultedDisplay = false;
     } else {
-        if (previousValueWasNotNumber) {
+        if (previousValueWasNotNumber && !itHasPeriod) {
             display.textContent = value;
             previousValueWasNotNumber = false;
         } else {
@@ -132,7 +132,12 @@ function applyIfAC() {
 
 function applyIfPeriod() {
     if (!itHasPeriod) {
-        display.textContent += '.';
+        if (!previousValueWasNotNumber) {
+            display.textContent += '.';
+        } else {
+            display.textContent = '0.';
+        }
+        
         itHasPeriod = true;
     }
 }
