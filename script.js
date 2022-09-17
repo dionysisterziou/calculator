@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector('#display');
 
-// Operators' functions
+// Operator functions
 const add = (firstNumber, secondNumber) => firstNumber + secondNumber;
 const subtract = (firstNumber, secondNumber) => firstNumber - secondNumber;
 const multiply = (firstNumber, secondNumber) => firstNumber * secondNumber;
@@ -34,17 +34,13 @@ function operate(operator, firstNumber, secondNumber) {
 function transformOperatorToFunction(value) {
     switch (value) {
         case '+':
-            value = add;
-            return value;
+            return add;
         case '-':
-            value = subtract;
-            return value;
+            return subtract;
         case 'x':
-            value = multiply;
-            return value;
+            return multiply;
         case '÷':
-            value = divide;
-            return value;
+            return divide;
     }
 }
 
