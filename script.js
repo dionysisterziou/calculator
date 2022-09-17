@@ -55,6 +55,7 @@ const checkIfAC = value => value === 'AC';
 const checkIfOperator = value => value === '+' || value === '-' ||
     value === 'x' || value === '÷';
 const checkIfPeriod = value => value === '.';
+const checkIfBothValuesExist = (firstNumber, secondNumber) => firstNumber !== null && secondNumber !== null;
 
 function checkWhatTheValueIs(value) {
     if (checkIfNumber(value)) {
@@ -114,11 +115,13 @@ function applyIfOperator(value) {
 }
 
 function applyIfEqual() {
-    checkIfDividedByZero();
+    if (checkIfBothValuesExist(firstNumber, secondNumber)) {
+        checkIfDividedByZero();
 
-    operator = null;
-    previousValueWasNotNumber = true;
-    itHasPeriod = false;
+        operator = null;
+        previousValueWasNotNumber = true;
+        itHasPeriod = false;
+    }
 }
 
 function applyIfAC() {
