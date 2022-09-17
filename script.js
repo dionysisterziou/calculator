@@ -12,6 +12,7 @@ let secondNumber = null;
 let operator = null;
 let defaultedDisplay = true; // The 0 in the default display
 let previousValueWasNotNumber = null;
+let itHasPeriod = false;
 
 buttons.forEach(button => {
     button.addEventListener('click', displayValue);
@@ -53,6 +54,7 @@ const checkIfEqual = value => value === '=';
 const checkIfAC = value => value === 'AC';
 const checkIfOperator = value => value === '+' || value === '-' ||
     value === 'x' || value === '÷';
+const checkIfPeriod = value => value === '.';
 
 function checkWhatTheValueIs(value) {
     if (checkIfNumber(value)) {
@@ -63,6 +65,8 @@ function checkWhatTheValueIs(value) {
         applyIfEqual();
     } else if (checkIfAC(value)) {
         applyIfAC();
+    } else if (checkIfPeriod(value)) {
+        applyIfPeriod();
     }
 }
 
@@ -106,6 +110,7 @@ function applyIfOperator(value) {
 
     firstNumber = Number(display.textContent);
     previousValueWasNotNumber = true;
+    itHasPeriod = false;
 }
 
 function applyIfEqual() {
@@ -113,6 +118,7 @@ function applyIfEqual() {
 
     operator = null;
     previousValueWasNotNumber = true;
+    itHasPeriod = false;
 }
 
 function applyIfAC() {
@@ -122,4 +128,12 @@ function applyIfAC() {
     firstNumber = null;
     secondNumber = null;
     defaultedDisplay = true;
+    itHasPeriod = false;
+}
+
+function applyIfPeriod() {
+    if (!itHasPeriod) {
+        display.textContent += '.';
+        itHasPeriod = true;
+    }
 }
