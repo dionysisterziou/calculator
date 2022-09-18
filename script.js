@@ -148,7 +148,11 @@ function checkTheDisplayedLength() {
 
 function applyIfNumber(value) {
     if (defaultedDisplay) {
-        display.textContent = value;
+        if (itHasPeriod) {
+            display.textContent += value;
+        } else {
+            display.textContent = value;
+        }
         defaultedDisplay = false;
     } else {
         if (previousValueWasNotNumber && !itHasPeriod) {
