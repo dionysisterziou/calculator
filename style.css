@@ -23,11 +23,16 @@ main {
 }
 
 .calculator-container {
-    width: 400px;
+    border: 10px solid darkslategray;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 450px;
 }
 
 #display {
-    font-size: 90px;
+    background-color: lightgray;
+    border: 5px solid black;
+    font-size: 80px;
     margin: 0;
     text-align: right;
 }
@@ -38,14 +43,28 @@ main {
 }
 
 .grid-item {
+    border: 2px solid black;
+    border-radius: 3px;
     font-size: 25px;
     padding: 25px 0;
 }
 
+.item-symbol {
+    background-color: dodgerblue;
+}
+
+.item-operator {
+    background-color: #FF8F1F;
+}
+
+.item-number {
+    background-color: #217C7E;
+}
+
 .item-ac {
-    grid-column: span 3;
+    grid-column: span 2;
 }
 
 .item-0 {
-    grid-column: span 2;
+    grid-column: span 3;
 }
