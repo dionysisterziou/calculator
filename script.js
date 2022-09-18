@@ -77,6 +77,7 @@ function displayValueOnKeyPress(button) {
                 applyIfPeriod();
                 break;
             case 'Equal':
+            case 'Enter':
                 applyIfEqual();
                 break;
             case 'Slash':
