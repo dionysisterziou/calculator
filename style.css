@@ -38,6 +38,7 @@ main {
 }
 
 .grid-container {
+    background-color: black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
@@ -45,8 +46,17 @@ main {
 .grid-item {
     border: 2px solid black;
     border-radius: 3px;
+    cursor: pointer;
     font-size: 25px;
     padding: 25px 0;
+}
+
+.grid-item:hover {
+    filter: brightness(85%);
+}
+
+.grid-item:focus {
+    outline: none;
 }
 
 .item-symbol {
