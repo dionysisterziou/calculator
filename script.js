@@ -52,18 +52,23 @@ const checkIfOperator = value => value === '+' || value === '-' ||
     value === 'x' || value === '÷';
 const checkIfPeriod = value => value === '.';
 const checkIfBothValuesExist = (firstNumber, secondNumber) => firstNumber !== null && secondNumber !== null;
+const checkIfBackspace = value => value === '';
 
 function checkWhatTheValueIs(value) {
-    if (checkIfNumber(value)) {
-        applyIfNumber(value);
-    } else if (checkIfOperator(value)) {
-        applyIfOperator(value);
-    } else if (checkIfEqual(value)) {
-        applyIfEqual();
-    } else if (checkIfAC(value)) {
-        applyIfAC();
-    } else if (checkIfPeriod(value)) {
-        applyIfPeriod();
+    if (checkIfBackspace(value)) {
+        applyIfBackspace();
+    } else {
+        if (checkIfNumber(value)) {
+            applyIfNumber(value);
+        } else if (checkIfOperator(value)) {
+            applyIfOperator(value);
+        } else if (checkIfEqual(value)) {
+            applyIfEqual();
+        } else if (checkIfAC(value)) {
+            applyIfAC();
+        } else if (checkIfPeriod(value)) {
+            applyIfPeriod();
+        }
     }
 }
 
@@ -139,5 +144,20 @@ function applyIfPeriod() {
         }
         
         itHasPeriod = true;
+    }
+}
+
+function applyIfBackspace() {
+    if (!defaultedDisplay) {
+        if (itHasPeriod) {
+            itHasPeriod = false;
+        }
+
+        if (display.textContent.length === 1) {
+            display.textContent = 0;
+            defaultedDisplay = true;
+        } else {
+            display.textContent = display.textContent.slice(0, -1);
+        }
     }
 }
