@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector('#display');
+const numberButtons = document.querySelectorAll('.item-number');
 
 // Operator functions
 const add = (firstNumber, secondNumber) => firstNumber + secondNumber;
@@ -15,36 +16,92 @@ let previousValueWasNotNumber = null;
 let itHasPeriod = false;
 
 buttons.forEach(button => {
-    button.addEventListener('click', displayValue);
+    button.addEventListener('click', displayValueOnClick);
 });
 
-// Other functions
-function displayValue(button) {
+window.addEventListener('keydown', displayValueOnKeyPress);
+
+// Display functions
+
+function displayValueOnClick(button) {
     let value = button.target.textContent;
     secondNumber = Number(display.textContent);
 
     checkWhatTheValueIs(value)
-    checkTheDisplayedLength(); // Keeps it 9 digits
+    checkTheDisplayedLength();
 }
 
-function operate(operator, firstNumber, secondNumber) {
-    return operator(firstNumber, secondNumber);
-}
+function displayValueOnKeyPress(button) {
+    let code = button.code
+    secondNumber = Number(display.textContent);
 
-function transformOperatorToFunction(value) {
-    switch (value) {
-        case '+':
-            return add;
-        case '-':
-            return subtract;
-        case 'x':
-            return multiply;
-        case '÷':
-            return divide;
+    if (!button.shiftKey) {
+        switch (code) {
+            case 'Digit0':
+                applyIfNumber(0)
+                break;
+            case 'Digit1':
+                applyIfNumber(1)
+                break;
+            case 'Digit2':
+                applyIfNumber(2)
+                break;
+            case 'Digit3':
+                applyIfNumber(3)
+                break;
+            case 'Digit4':
+                applyIfNumber(4)
+                break;
+            case 'Digit5':
+                applyIfNumber(5)
+                break;
+            case 'Digit6':
+                applyIfNumber(6)
+                break;
+            case 'Digit7':
+                applyIfNumber(7)
+                break;
+            case 'Digit8':
+                applyIfNumber(8)
+                break;
+            case 'Digit9':
+                applyIfNumber(9)
+                break;
+            case 'Escape':
+                applyIfAC();
+                break;
+            case 'Backspace':
+                applyIfBackspace();
+                break;
+            case 'Period':
+                applyIfPeriod();
+                break;
+            case 'Equal':
+                applyIfEqual();
+                break;
+            case 'Slash':
+                applyIfOperator('÷');
+                break;
+            case 'Minus':
+                applyIfOperator('-');
+                break;
+        }
+    } else {
+        switch (code) {
+            case 'Digit8':
+                applyIfOperator('x');
+                break;
+            case 'Equal':
+                applyIfOperator('+');
+                break;
+        }
     }
+
+    checkTheDisplayedLength();
 }
 
 // Check functions
+
 const checkIfNumber = value => Number(value) >= 0 || Number(value) <= 9;
 const checkIfEqual = value => value === '=';
 const checkIfAC = value => value === 'AC';
@@ -87,6 +144,7 @@ function checkTheDisplayedLength() {
 }
 
 // Apply functions
+
 function applyIfNumber(value) {
     if (defaultedDisplay) {
         display.textContent = value;
@@ -142,7 +200,7 @@ function applyIfPeriod() {
         } else {
             display.textContent = '0.';
         }
-        
+
         itHasPeriod = true;
     }
 }
@@ -159,5 +217,24 @@ function applyIfBackspace() {
         } else {
             display.textContent = display.textContent.slice(0, -1);
         }
+    }
+}
+
+// Other functions 
+
+function operate(operator, firstNumber, secondNumber) {
+    return operator(firstNumber, secondNumber);
+}
+
+function transformOperatorToFunction(value) {
+    switch (value) {
+        case '+':
+            return add;
+        case '-':
+            return subtract;
+        case 'x':
+            return multiply;
+        case '÷':
+            return divide;
     }
 }
