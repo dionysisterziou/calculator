@@ -39,7 +39,7 @@ main {
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .grid-item {
@@ -59,10 +59,6 @@ main {
 
 .item-number {
     background-color: #217C7E;
-}
-
-.item-ac {
-    grid-column: span 2;
 }
 
 .item-0 {
