@@ -18,34 +18,10 @@ html {
     padding: 20px 0;
 }
 
-.item-0 {
-    grid-area: 6 / 1 / 7 / 3;
-}
-
-.item-1 {
-    grid-row: 2;
-}
-
 .item-ac {
-    grid-area: 1 / 1 / 2 / span 3;
+    grid-column: span 3;
 }
 
-.item-subtract {
-    grid-area: 3 / 4;
-}
-
-.item-multiply {
-    grid-area: 2 / 4;
-}
-
-.item-divide {
-    grid-row: 1;
-}
-
-.item-equal {
-    grid-row: 6;
-}
-
-.item-period {
-    grid-area: 6 / 3;
+.item-0 {
+    grid-column: span 2;
 }
