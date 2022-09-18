@@ -1,3 +1,9 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     box-sizing: border-box;
 }
@@ -8,14 +14,32 @@ html {
     box-sizing: inherit;
 }
 
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+}
+
+.calculator-container {
+    width: 400px;
+}
+
+#display {
+    font-size: 90px;
+    margin: 0;
+    text-align: right;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
 
 .grid-item {
-    font-size: 20px;
-    padding: 20px 0;
+    font-size: 25px;
+    padding: 25px 0;
 }
 
 .item-ac {
