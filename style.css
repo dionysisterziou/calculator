@@ -1,7 +1,5 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
+:root {
+    font-size: 62.5%;
 }
 
 html {
@@ -12,6 +10,10 @@ html {
 *::before,
 *::after {
     box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
 }
 
 main {
@@ -29,10 +31,10 @@ main {
     width: 450px;
 }
 
-#display {
+.display {
     background-color: lightgray;
     border: 5px solid black;
-    font-size: 80px;
+    font-size: 8rem;
     margin: 0;
     text-align: right;
 }
@@ -47,16 +49,12 @@ main {
     border: 2px solid black;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 2.5rem;
     padding: 25px 0;
 }
 
 .grid-item:hover {
     filter: brightness(85%);
-}
-
-.grid-item:focus {
-    outline: none;
 }
 
 .item-symbol {

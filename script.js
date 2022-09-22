@@ -11,7 +11,9 @@ const divide = (firstNumber, secondNumber) => firstNumber / secondNumber;
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
-let defaultedDisplay = true; // The 0 in the default display
+
+// The 0 in the default display
+let defaultedDisplay = true; 
 let previousValueWasNotNumber = null;
 let itHasPeriod = false;
 
@@ -22,7 +24,6 @@ buttons.forEach(button => {
 window.addEventListener('keydown', displayValueOnKeyPress);
 
 // Display functions
-
 function displayValueOnClick(button) {
     let value = button.target.textContent;
     secondNumber = Number(display.textContent);
@@ -102,7 +103,6 @@ function displayValueOnKeyPress(button) {
 }
 
 // Check functions
-
 const checkIfNumber = value => Number(value) >= 0 || Number(value) <= 9;
 const checkIfEqual = value => value === '=';
 const checkIfAC = value => value === 'AC';
@@ -145,7 +145,6 @@ function checkTheDisplayedLength() {
 }
 
 // Apply functions
-
 function applyIfNumber(value) {
     if (defaultedDisplay) {
         if (itHasPeriod) {
@@ -226,7 +225,6 @@ function applyIfBackspace() {
 }
 
 // Other functions 
-
 function operate(operator, firstNumber, secondNumber) {
     return operator(firstNumber, secondNumber);
 }
