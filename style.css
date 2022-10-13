@@ -13,15 +13,18 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.6rem;
+    height: 100vh;
 }
 
 main {
+    flex: 1;
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     justify-content: center;
 }
 
@@ -72,4 +75,20 @@ main {
 
 .item-0 {
     grid-column: span 3;
+}
+
+footer {
+    align-items: center;
+    background-color: #66023C;
+    color: #807F03;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    min-height: 50px;
+    width: 100%;
+}
+
+/* Disables Google Translate's pop up box  */
+#gtx-trans {
+    display: none;
 }
